@@ -1,5 +1,5 @@
 echo "Welcome!"
-NUMBEROFFILES=$(ls | wc -l)
+NUMBEROFFILES=$(ls -a | wc -l)
 function GuessNumber
 {
 GUESS=0
@@ -8,15 +8,22 @@ do
 	echo "Guess the number of files in the current directory and press Enter: "
 	read response
 	GUESS=$response
-	if [[ $GUESS -lt $NUMBEROFFILES ]]
+	if [[ $GUESS =~ ^[0-9]+$ ]]
 	then
-	echo "Your guess is too low"
-	elif [[ $GUESS -gt $NUMBEROFFILES ]]
-	then
-	echo "Your guess is too high"
-	fi	
+		if [[ $GUESS -lt $NUMBEROFFILES ]]
+		then
+		echo "Your guess is too low"
+		elif [[ $GUESS -gt $NUMBEROFFILES ]]
+		then
+		echo "Your guess is too high"
+		else
+		echo "Congrats, your guess is correct"
+		fi
+	else
+	echo "Invalid input"
+	break	
+	fi
 done
-echo "Congrats, your guess is correct"
 }
 
 GuessNumber
