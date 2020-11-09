@@ -1,8 +1,8 @@
 echo "Welcome!"
-NUMBEROFFILES=$(ls -a | wc -l)
+NUMBEROFFILES=$(ls -A | wc -l)
 function GuessNumber
 {
-GUESS=0
+GUESS=-1
 while [[ $GUESS -ne $NUMBEROFFILES ]]
 do
 	echo "Guess the number of files in the current directory and press Enter: "
